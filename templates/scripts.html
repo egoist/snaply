@@ -3,9 +3,11 @@
 <script src="/lib/autosize/dest/autosize.min.js"></script>
 <script src="/lib/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js"></script>
 <script src="/lib/simpleStorage/simpleStorage.js"></script>
-<script src="/lib/action-js/lib/js/action.js"></script>
+{{H.js('action')}}
 {{H.js('loading')}}
 {{H.js('moe')}}
+{% if C.env == 'production' %}
 <div style="display:none">
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254656072'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254656072' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
+{% endif %}

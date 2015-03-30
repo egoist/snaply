@@ -1,6 +1,7 @@
 Model = require './models'
 parse = require 'co-body'
 emoji = require 'emojione'
+bcrypt = require 'co-bcryptjs'
 
 routes = module.exports = {}
 
@@ -139,7 +140,7 @@ routes.remove = ->
   snap = yield snap.remove()
   this.body = snap
 
-routes.edit = () ->
+routes.edit = ->
   id = this.params.id
   user = this.req.user
   snap = yield Model.DB.snaps.where('random_id', id).findOne()
@@ -157,3 +158,21 @@ routes.edit = () ->
     user: user 
     snap: snap
     snaps: snaps
+
+routes.password = ->
+  post = yield parse this
+  currentPassword = post.currentPassword
+  password = post.password
+  salt = yield bcrypt.genSalt(10)
+  hash = yield bcrypt.hash(password, salt)
+  user = yield Model.DB.users.where('id', this.req.user.id).findOne()
+  if currentPassword
+    checkPassword = yield bcrypt.compare(currentPassword, user.attributes.password)
+    if user.attributes.password and not checkPassword
+      this.body = 
+        status: 'bad'
+        detail: 'Wrong password'
+      return
+  user.set('password', hash)
+  user = yield user.save()
+  this.body = user

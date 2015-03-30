@@ -1,0 +1,15 @@
+{% block title %}
+Settings - {{ C.site.name }}
+{% endblock %}
+
+{% extends 'layout.html' %}
+
+{% block styles %}
+{% parent %}
+{% endblock %}
+
+{% block script %}
+<script>
+  var title = 'Settings - {{ C.site.name }}';
+</script>
+{% endblock %}

@@ -55,7 +55,35 @@ $ ->
     .on 'click', '.logout', (e) ->
       e.preventDefault()
       window.location.href = '/logout'
-      
+    .on 'click', '#settings-trigger', ->
+      action.showModal('settings-modal')
+    .on 'click', '.modal-overlay', ->
+      $('.trigger').removeClass('active')
+    .on 'click', '#save-password', ->
+      password = $('#password').val()
+      confirm = $('#password-confirm').val()
+      currentPassword = $('#currentPassword').val()
+      if password isnt confirm
+        action.showTip 'The password you typed didn\'t match'
+        return
+      if not password or not confirm
+        action.showTip 'Password invalid'
+        return
+      if password.length < 8
+        action.showTip 'Your password is too weak, the length should be 8 to 16'
+        return
+      appLoading.start()
+      $.post '/settings/password', 
+        currentPassword: currentPassword
+        password: password,
+        (data) ->
+          if data._id
+            action.closeModal()
+            action.showTip 'You have successfully updated you profile!'
+            $('input[type=password]').val('')
+          else
+            action.showTip data.detail          
+          appLoading.stop()
 
   $('body').on 'focus change keydown keyup', '.editor', ->
     simpleStorage.set('editor', $('.editor').val()) if typeof mod isnt 'undefined' and mod is 'index'

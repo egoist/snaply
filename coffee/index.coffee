@@ -75,6 +75,7 @@ module.exports = (root) ->
 
   router.get '/app', authed, ->
     this.body = yield this.req.user
+  router.post '/settings/password', authed, routes.password
   router.get '/logout', (next) ->
     this.logout()
     this.redirect '/'
