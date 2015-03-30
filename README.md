@@ -9,7 +9,7 @@ The most beautiful note service with the ugliest code.
 Backend stack:
 
 - Koa.js
-- MongDB
+- MongoDB
 - Redis
 
 Frontend tools:
