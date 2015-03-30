@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+{% parent %}
+{% endblock %}
+
+{% block script %}
+<script>
+  var login = {% if user %}true{% else %}false{% endif %}
+  var mod = {% if snap %}'edit'{% else %}'index'{% endif %}
+  var title = '{{ C.site.name }}';
+</script>
+{% endblock %}

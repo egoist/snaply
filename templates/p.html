@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+{{ snap.title }} - {% parent %}
+{% endblock %}
+
+
+{% block main %}
+  <section class="main p">
+    <div class="main-content">
+      <div class="markdown-body">{{ snap.content|safe }}</div>
+      {% block footer %}
+        {% include 'footer.html' %}
+      {% endblock %}
+
+      </div>
+      <script>
+        var login = {% if user %}true{% else %}false{% endif %};
+        var title = '{{ snap.title }} - {{C.site.name}}';
+      </script>
+  </section>
+  <section class="rightbar">
+    <div class="side-list">
+      <div class="p-user">
+          <div class="p-avatar">
+            <span class="avatar-src" style="background-image:url({{ author.avatar }})"></span>
+          </div>
+          <div class="p-user-info">
+            <span class="p-user-name">{{author.displayName}}</span>
+            <div class="p-time">{{snap.timeAgo}}<span class="dot"></span>{{snap.count}} words</div>
+          </div>
+          <div class="hr"></div>
+          <div class="raw-files">
+            {% if user.id == author.id %}
+            <a class="btn btn-primary block" href="/p/{{snap.random_id}}/edit">Edit</a>
+            <a href="javascript:;" class="delete btn btn-danger block" data-id="{{snap._id.toString()}}">Delete</a>
+            {% endif %}
+            <a class="btn btn-success block" href="/p/{{snap.random_id}}/raw">Raw</a>
+            <a class="btn btn-success block" href="/p/{{snap.random_id}}/html">HTML</a>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock %}

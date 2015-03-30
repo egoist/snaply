@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{{ C.site.name_zh }}{% endblock %}</title>
+  {% block styles %}
+  {% include 'styles.html' %}
+  {% endblock %}
+</head>
+<body>
+  
+
+<div class="wrap">
+  {% block header %}
+    {% include 'header.html' %}
+  {% endblock %}
+  {% block sidebar %}
+  <section class="sidebar">
+    <div class="side-list" id="side-list">
+      <div class="dir-header">
+        <h3 class="dir-header-title">Active</h3>
+      </div>
+      <div class="active-list"></div>
+      <div class="dir-header">
+        <h3 class="dir-header-title">{{ user.displayName }}</h3>
+      </div>
+      {% if snaps %}
+        <div class="snap-list">
+          {% for s in snaps %}
+          
+          <a class="snap{% if s.random_id == snap.random_id %} active{% endif %} loop-snap" href="/p/{{s.random_id}}" data-id={{s.random_id}}"">{{s.title}}</a>
+          
+          {% endfor %}
+        </div>
+      {% else %}
+        <div style="padding: 20px .5rem;color:#999;font-size:13px">You haven't written anything on Snaply.</div>
+      {% endif %}
+    </div>
+    {% if C.env == 'development' %}
+    <footer class="sidebar-footer">
+      <a class="new-folder" href="/new/folder"><span class="icon-folder-add"></span> New folder</a>
+    </footer>
+    {% endif %}
+  </section>
+
+  {% endblock %}
+
+  {% block main %}
+  <section class="main">
+    <div class="main-content">
+      <h2 class="page-heading"><span id="preview-toggle">Write</span></h2>
+      <textarea data-id="{{snap.random_id}}" class="editor" placeholder="Start writing..." rows="8">{{snap.content}}</textarea>
+      <div class="preview-area markdown-body">Loading preview...</div>
+      <div class="write-panel">
+        <button class="create btn btn-ghost">{% if snap %}Update{%else%}Save{% endif %}</button>
+        <a class="new-text-block link" href="#">link</a>
+      </div>
+      {% block footer %}
+        {% include 'footer.html' %}
+      {% endblock %}
+
+      </div>
+      {% block script %}
+      <script>
+        var title = '{{ C.site.name }}';
+        var mod = {% if snap %}'edit'{%else%}'home'{% endif %};
+      </script>
+      {% endblock %}
+  </section>
+  {% endblock %}
+</div>
+  
+  {% block scripts %}
+  {% include 'scripts.html' %}
+  
+  {% endblock %}
+</body>
+</html>

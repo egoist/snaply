@@ -1,0 +1,27 @@
+{
+  "name": "snaply",
+  "main": "index.js",
+  "authors": [
+    "Kchan Zen <kchanzen@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "kickstart.css": "~1.0.1",
+    "jquery": "~2.1.3",
+    "autosize": "~2.0.0",
+    "jquery-pjax": "~1.9.5",
+    "simpleStorage": "~0.1.3",
+    "action-js": "~1.0.0",
+    "github-markdown-css": "~2.0.6",
+    "open-sans-fontface": "~1.2.1",
+    "perfect-scrollbar": "~0.6.1"
+  }
+}

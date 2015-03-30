@@ -1,0 +1,30 @@
+
+  <header class="header">
+    <div class="search-form">
+      <input class="search-input" type="text" placeholder="fake search">
+    </div>
+    <h1 class="site-title">
+      <a href="/">{{ C.site.name }}</a>
+    </h1>
+    <nav class="site-nav">
+      <ul>
+        <li>
+          <a class="{% if active == 'home' %}active{% endif %}" href="/">Home</a>
+        </li>
+        <li>
+          <a class="{% if active == 'about' %}active{% endif %}" href="https://snaply.me/p/KPIRnKORlet">About</a>
+        </li>
+       
+          {% if user %}
+          <li>
+            <a class="logout" href="/logout">Logout</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="/auth/github">Sign in with GitHub</a>
+          </li>
+          {% endif %}
+        
+      </ul>
+    </nav>
+  </header>

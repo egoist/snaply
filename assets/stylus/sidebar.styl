@@ -1,0 +1,111 @@
+.sidebar
+  left 0
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar-button
+    display none
+  &::-webkit-scrollbar-track
+    background white
+  &::-webkit-scrollbar
+    -webkit-appearance: none;
+    width: 10px;
+
+.rightbar
+  right 0
+
+.sidebar,.rightbar
+  position: fixed;
+  z-index: 2;
+  top: 3rem;
+  bottom 0
+  background: #f9f9f9; 
+  /*
+  &::-webkit-scrollbar-thumb
+    min-height: 2rem;
+    background: #d2d2d2;
+    background-clip: padding-box;
+    border: 3px solid #fff;
+    border-radius: 5px;
+  */
+
+.ps-container>.ps-scrollbar-y-rail>.ps-scrollbar-y
+  width 5px
+  background-color: #d2d2d2;
+
+.side-list
+  width: 18rem;
+  min-height: 100%;
+  padding-bottom 3.5rem
+  .snap
+    display block
+    padding: .2rem .5rem;
+    font-size 14px
+    &:hover
+      background #f0f0f0
+    &.active
+      background: #398df0;
+      color: white
+      box-shadow: inset -1px 0 #196fc2;
+
+.avatar-src
+  width 50px
+  height @width
+  background-size cover
+  display block
+  border-radius 2px
+  background-color #ddd
+
+.p-avatar
+  float left
+
+.p-user
+  padding 20px .5rem
+  .p-user-info
+    margin-left 60px
+  .p-time
+    font-size 14px
+    color #999
+
+.raw-files
+  a 
+    color #999
+    font-size 14px
+    &:hover
+      color #778087
+  .dot
+    &:after
+      color #999
+
+.sidebar-footer
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 18rem;
+  font-size 14px
+  background: #f9f9f9;
+  box-shadow: inset -1px 0 #e3e3e3;
+  &:before
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 1px;
+    height: 1em;
+    background-image: -webkit-linear-gradient(top, rgba(249,249,249,0), rgba(249,249,249,0.95));
+    background-image: linear-gradient(to bottom, rgba(249,249,249,0), rgba(249,249,249,0.95));
+    pointer-events: none;
+
+  .new-folder
+    height 40px
+    line-height @height
+    padding 0 .5rem
+
+.dir-header 
+  padding 10px .5rem
+  padding-bottom 0
+
+.dir-header-title
+  font-size: 13px;
+  color: #778087;
