@@ -2,7 +2,7 @@
 
 The most beautiful note service with the ugliest code.
 
-![preview](http://i.imgur.com/BZ798ST.png)
+![preview](http://i.imgur.com/vT7EYzc.png)
 
 ## Development
 
