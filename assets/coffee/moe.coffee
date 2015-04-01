@@ -1,4 +1,3 @@
-
 $(document).pjax('a', '.wrap', 
   fragment: '.wrap', 
   timeout: 10000 
@@ -6,11 +5,9 @@ $(document).pjax('a', '.wrap',
 
 
 $('.wrap').on('pjax:start', ->
-  appLoading.start()
 )
 
 $('.wrap').on('pjax:end', ->
-  appLoading.stop()
   $('.sidebar').perfectScrollbar()
   fill()
   $('title').html(title)
@@ -72,7 +69,6 @@ $ ->
       if password.length < 8
         action.showTip 'Your password is too weak, the length should be 8 to 16'
         return
-      appLoading.start()
       $.post '/settings/password', 
         currentPassword: currentPassword
         password: password,
@@ -83,7 +79,6 @@ $ ->
             $('input[type=password]').val('')
           else
             action.showTip data.detail          
-          appLoading.stop()
 
   $('body').on 'focus change keydown keyup', '.editor', ->
     simpleStorage.set('editor', $('.editor').val()) if typeof mod isnt 'undefined' and mod is 'index'
@@ -105,10 +100,8 @@ create = ->
   if content is ''
     action.showTip 'Please, I beg you to write something first...'
     return false
-  appLoading.start()
   $(@).attr('disabled', true)
   $.post '/save/new', {content: content}, (data) ->
-    appLoading.stop()
     action.showTip 'You created a new snap!'
     $('.create').attr('disabled', false)
     setTimeout ->
@@ -127,10 +120,8 @@ create = ->
 
 update = ->
   content = encodeURIComponent $('.editor').val()
-  appLoading.start()
   $.post '/save/update', {content: content, id: $('.editor').data('id')}, (data) ->
     action.showTip 'Updated!'
-    appLoading.stop()
     prepCurrentFile()
     $('.new-text-block')
       .attr('href','/p/' + data.random_id)
